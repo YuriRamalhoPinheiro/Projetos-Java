@@ -1,0 +1,129 @@
+@CHARSET "UTF-8";
+
+header{
+	/* ajustando altura, espaço interno do componente, margem inferior*/
+	height:50px;
+	pedding: 5px 0px;
+	margin-bottom: 20px;
+	/*cor de fundo e cor do texto*/
+	background-color: rgb(34, 34, 34);
+	color: #fff;
+	/*ajustando sombra do componente*/
+	box-shadow: 0px 2px 2px #ccc;
+}
+
+.logo-algaworks{
+	margin-top: 10px;
+}
+
+header > div{
+	/*ajustando margem da esquerda*/
+	margin-left: 8px;
+}
+
+body{
+	/*ajustando a tamanho da fonte, tipo da fonte, modelo da fonte*/
+	font-size: 12px;
+	font-family: Arial, helvetica, sans-serif;
+	font-weight: normal;
+	/*ajustando margens */
+	margin: 0px;
+}
+
+body > div#conteudo{
+	/*ajustando o espaço interno do componente, no lado esquedro */
+	padding:10px;
+}
+
+h1{
+	/*ajustando o tamanho e modelo da fonte*/
+	font-size:26px;
+	font-weight: 500;
+	/*ajustando as magens do componente*/
+	margin:0px;
+	margin-bottom: 10px;
+	/*ajustando o espaço interno do componente*/
+	padding:0px;
+}
+
+.rotulo{
+	/*ajustando o largura do componente*/
+	width:100px;
+}
+
+.ui-panelGrid td{
+	/*ajustando a altura do componente*/
+	height: 34px;
+}
+
+.ajax-status{
+	/*ajustando a posição */
+	position: fixed;
+	top: 55px;
+	right: 10px;
+	/*ajustando a altura e a largura do componente*/	
+	height: 35px;
+	width: 35px;
+}
+
+footer{
+	/*ajustando o tamanho interno do componente, */
+	padding: 5px 8px;
+	/*ajustando a margem inferior do componente*/
+	margin-bottom: 10px;
+}
+
+/* Customiza TabView - início */
+.ui-tabs .ui-tabs-panel {
+    padding: 0.5em 0.2em !important;
+}
+
+.ui-tabs {
+    padding: 0px !important;
+}
+
+.ui-tabs .ui-tabs-nav {
+    margin: -1px !important;
+}
+
+.ui-tabs.ui-tabs-top > .ui-tabs-nav {
+    padding: 0px !important;
+}
+/* Customiza TabView - fim */
+
+/* Menu sistema inicio */
+.menu-sistema {
+    border: 0px !important;
+    padding: 0px !important;
+    background: none !important;
+}
+
+.menu-sistema .ui-menu-parent > a .ui-menuitem-text, .menu-sistema > .ui-menu-list > .ui-menuitem > a > .ui-menuitem-text {
+    color: #ffffff !important;
+}
+
+.menu-sistema .ui-icon-triangle-1-s {
+    background: url(#{resource['images:seta-para-baixo.png']}) no-repeat !important;
+}
+/* Menu sistema fim */
+
+.ui-state-disabled {
+	opacity: .80 !important;
+}
+
+.ui-selectmanycheckbox tbody tr td label{
+	margin-right: 10px !important;
+}
+
+.ui-widget button{
+	font-size:1.3em !important;	/*Definindo o tamanho de todos os botões da sistema*/
+}
+
+button#idBotaoExcluir{
+	font-size:1em !important;	/*Definindo o tamanho de todos os botões da sistema*/
+}
+
+button#idBotaoEditar{
+	font-size:1em !important;	/*Definindo o tamanho de todos os botões da sistema*/
+}
+

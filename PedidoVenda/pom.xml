@@ -1,0 +1,226 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.com.yuri.pedido-venda</groupId>
+	<artifactId>PedidoVenda</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>PedidoVenda</name>
+	<description>Projeto utilizando Java, Maven, JSF, PrimeFaces, CDI, JPA e Hibernate</description>
+
+	<!-- DEFININDO PADRÃO DE CARACTERES A SER DIGITADO PELO USUÁRIO -->
+	<properties>
+		<projec.build.sourceEncodingt>UTF-8</projec.build.sourceEncodingt>
+	</properties>
+
+	<!-- CONFIGURANDO O BUILD DO MAVEN -->
+	<build>
+		<finalName>PedidoVenda</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<failOnMissingWebXml>true</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals><goal>copy-dependencies</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
+		</plugins>
+	</build>
+
+	<!-- CONFIGURANDO AS DEPENDÊNCIAS DO PROJETO -->
+	<dependencies>
+
+		<dependency> <!-- Implementação do Bean Validatio - https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.3.1.Final</version>
+		</dependency>
+
+		<!-- Implementação Mojarra do JSF 2.2 (Necessário para utilizar o CDI) -->
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.faces</artifactId>
+			<version>2.2.13</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- OmniFaces (utilitarios para JSF) -->
+		<dependency>
+			<groupId>org.omnifaces</groupId>
+			<artifactId>omnifaces</artifactId>
+			<version>2.0</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency> <!-- Biblioteca de componentes do PrimeFaces -->
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>6.0</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>all-themes</artifactId>
+			<version>1.0.10</version>
+		</dependency>
+
+		<!-- Implementação Weld da especificação CDI -->
+		<dependency>
+			<groupId>org.jboss.weld.servlet</groupId>
+			<artifactId>weld-servlet</artifactId>
+			<version>2.4.1.Final</version>
+		</dependency>
+		
+		<!-- Commons loggin (abstrai a implementação de loggin) -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.3</version>
+		</dependency>
+
+		<!-- Commons lang (utilidades) -->
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.1</version>
+		</dependency>
+
+		<!-- Log4J -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-jcl</artifactId>
+			<version>2.7</version>
+		</dependency>
+
+		<!-- Driver(Conector) JDBC do Mysql - https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.40</version>
+		</dependency>
+
+		<!-- Nucleo do Hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.2.4.Final</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- Implementação do EntityManager da JPA (for JPA, use hibernate-entitymanager 
+			instead of hibernate-core) -->
+		<!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-entitymanager</artifactId> 
+			<version>5.2.6.Final</version> </dependency> -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>5.2.4.Final</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- API de Servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Abstração para envio de e-mails -->
+		<dependency>
+			<groupId>com.outjected</groupId>
+			<artifactId>simple-email</artifactId>
+			<version>0.2.1</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- REQUERIDO PARA ENVIO DE E-MAIL -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- USAMOS PARA CRIAR TEMPLATES DE E-MAILS -->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- USADO PARA FORMATAR NÚMEROS EM TEMPLATES -->
+		<dependency>
+			<groupId>velocity-tools</groupId>
+			<artifactId>velocity-tools-generic</artifactId>
+			<version>1.1</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- SPRING SECURITY (AUTENTICAÇÃO E AUTORIZAÇÃO) -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>3.1.4.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>3.1.4.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>3.1.4.RELEASE</version>
+		</dependency>
+
+		<!-- JASPERREPORT (BIBLIOTECA PARA GERAÇÃO DE RELATÓRIOS) -->
+		<!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.4.0</version>
+		</dependency>
+
+	</dependencies>
+
+	<!-- DEFININDO O REPOSITÓRIO DO PRIMFACES PARA LOCALIZAR AS DEPENDÊNCIAS -->
+	<repositories>
+		<repository>
+			<id>prime-repo</id>
+			<name>PrimeFaces Maven Repository</name>
+			<url>http://repository.primefaces.org</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
+</project>

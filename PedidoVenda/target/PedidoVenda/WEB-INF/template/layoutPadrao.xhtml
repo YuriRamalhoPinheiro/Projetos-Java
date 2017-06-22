@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>
+		<ui:insert name="titulo">Sistema de pedidos de venda</ui:insert>
+	</title>
+	<h:outputStylesheet library="css" name="sistema.css"/>
+	<h:outputScript name="jquery.maskMoney.js" library="js"/>
+</h:head>
+	
+	<p:ajaxStatus styleClass="ajax-status"  
+				  onstart="configurarMoeda()" onsuccess="configurarMoeda()" 
+				  onerror="configurarMoeda()" oncomplete="configurarMoeda()">
+		<f:facet name="start">
+			<h:graphicImage library="images" name="loading.gif" />
+		</f:facet>
+		
+		<f:facet name="complete">
+		</f:facet>
+	</p:ajaxStatus>
+	
+	<h:body>
+		<header id="idCabecalho">
+			<div style="float:left">
+				<h:link outcome="/home.xhtml">
+					<h:graphicImage styleClass="logo-algaworks" library="images" name="logo-algaworks2.png" />
+				</h:link>
+			</div>
+			
+			<div style="float:right; margin-right:110px; margin-top:10px">
+				<span style="float:left;  margin-top:7px; margin-right:60px; font-weight:bold">
+					Olá #{seguranca.nomeUsuario}!  
+				</span>
+			
+				<h:form style="display:inline-block">
+					<p:menubar styleClass="menu-sistema">
+						<p:submenu label="Cadastros">
+							<p:menuitem value="Clientes" />
+							<p:menuitem value="usuários" />
+							<p:separator />
+							<p:menuitem value="Categorias" />
+							<p:menuitem value="Produtos" outcome="/produtos/pesquisaProdutos.xhtml"/>
+						</p:submenu>
+						
+						<p:submenu label="Pedidos">
+							<p:menuitem value="Novo pedido" outcome="/pedidos/cadastroPedido.xhtml"/>
+							<p:menuitem value="Pesquisa de pedidos" outcome="/pedidos/pesquisaPedido.xhtml"/>
+						</p:submenu>
+						
+						<p:submenu label="Relatórios">
+							<p:menuitem value="Pedidos emitidos" outcome="/relatorios/relatorioPedidosEmitidos.xhtml" />
+						</p:submenu>
+						
+						<p:menuitem value="Sair" url="/j_spring_security_logout" style="margin-left:15px"/>
+					</p:menubar>
+				</h:form>
+			</div>
+			<div style="clear:both" />			
+		</header>
+		
+		<div id="conteudo" >
+			<ui:insert name="conteudo"/>
+		</div>
+		
+		<p:separator style="margin-top:20px"/>
+		
+		<footer>
+			Curso online de Sistemas Comerciais com Java EE, CDI, JPA e Primeface - 
+			<a href="http://www.algaworks.com" target="_blank" >www.algaworks.com</a>
+		</footer>
+		
+		<script>
+			function configurarMoeda(){
+				$(".moeda").maskMoney({decimal: ",", thousands: ".", allowZero: true });
+			}
+			$(document).ready(function(){
+				configurarMoeda();	
+			});
+			
+		</script>
+	</h:body>
+</html>

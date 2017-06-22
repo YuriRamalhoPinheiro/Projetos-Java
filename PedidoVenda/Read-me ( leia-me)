@@ -1,0 +1,68 @@
+
+INFORMAÇÕES DO PROJETO
+
+Autor: Yuri Ramalho Pinheiro
+Data: 04/02/2017
+-----------OBJETIVO DO PROJETO-------------------------------------------
+
+Este projeto deve criar uma solução para gerenciar pedidos e vendas de produtos.
+Ele é um prototipo elabora através do estudo e apredizado adquirido por mim (Yuri Ramalho Pinheiro)
+no curso da Algaworks.  
+
+-----------TECNOLOGIAS UTILIZADAS NO PROJETO -----------------------------
+
+JAVA EE para WEB
+JSF com Primefaces
+XHTML, HTML5, CSS e JavaScript
+CDI com WELD
+JPA com Hibernate
+Bean Validation com HabernateValidation
+Commons-logging com Log4j
+Banco de dados MySQL
+Spring Security
+
+----------- ARQUIVOS DE CONFIGURAÇÕES NO PROJETO--------------------------
+1 - Sobre o POM.xml
+Este arquivo é resposável por gerenciar as configurações do Maven 
+e adicionar as dependências no projeto
+
+2 - Sobre o WEB-INF/web.xml
+Este arquivo é responsável por gerenciar as configurações web do projeto
+
+3 - Sobre o WEB-INF/faces-config.xml
+Este é o arquivo de configuração do JSF
+
+4 - Sobre o META-INF/persistence.xml
+Este arquivo é responsável por gerenciar as configurações da especificação
+JPA que faz o Mapeamento objeto relacional com o banco de dados
+
+5 - Sobre o META-INF/beans
+Este arquivo é necessário para utilizar a especificação CDI no projeto,
+ele não possui nenhuma configuração, mas é necessário adiciona-lo para que 
+o projeto reconhece o CDI
+
+6 - Sobre o META-INF/context.xml
+Este arquivo é necessário para adicionar a implementação WELD da especificação CDI 
+no projeto e integra-lo com o TOMCAT
+
+7 - Sobre o META-INF/services/javax.enterprise.inject.spi.Extension
+Este arquivo possui o caminho da classe "Extension" que é resposável por adicionar o @ViewEscoped 
+ao contexto do CDI, pois este escopo não esta incluido no CDI, então o CDI poderá gerenciar 
+o ciclo de vida dos beans através do @ViewEscoped
+
+8 - Sobre src/main/resources/log4j2.xml
+Este arquivo é responsável por gerenciar os logs da aplicação e como eles seram 
+armazenados  
+
+9 - Sobre src/main/resources/ValidationMessages.properties 
+Este arquivo foi criar para alterar as informações de validação emitidas pela especificação 
+Bean Validation e Hibernate Validation, exibidas para o usuário, para que 
+as mensagens inforamadas possam ser mais compreensiveis.  
+Mais informações sobre as chaves de validação verifique em: 
+Maven depedencies/hibernate-validator/org.hibernate.validator/ValidationMessages_pt_BR.properties
+
+10 - Sobre src/main/resources/com/algawoks/pedidovenda/Messages.properties 
+Este arquivo é foi criado para alterar as informações de valdiação emitidas pela especificação 
+JSF, exibidas para o usuário 
+Mais informações sobre as chaves de validação verifique em: 
+Maven depedencies/javax-faces/javax-faces/Messages_pt_BR.properties
