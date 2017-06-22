@@ -1,0 +1,47 @@
+<ui:composition  
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:panelGrid columns="4" 
+		style="width:100%"
+		styleClass="ui-noborder"
+		columnClasses="rotulo, campos, rotulo, campos">
+		
+		<p:outputLabel value="Data da entrega" for="idDataEntrega"/>
+		<p:calendar id="idDataEntrega" size="10" pattern="dd/MM/yyyy" 
+						value="#{cadastroPedidoBean.pedido.dataEntrega}"
+						disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" />
+		
+		<p:spacer />
+		<p:spacer />
+		
+		<p:outputLabel value="Logradouro" for="idLogradouro" />
+		<p:inputText  id="idLogradouro" size="50" value="#{cadastroPedidoBean.pedido.enderecoEntrega.logradouro}"
+					  disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" />
+		
+		<p:outputLabel value="Número" for="idNumero"/>
+		<p:inputText id="idNumero" size="5" value="#{cadastroPedidoBean.pedido.enderecoEntrega.numero}"
+					disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" />
+		
+		<p:outputLabel value="Complemento" for="idComplemento"/>
+		<p:inputText id="idComplemento" size="50" value="#{cadastroPedidoBean.pedido.enderecoEntrega.complemento}"
+					disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" />
+		
+		<p:outputLabel value="Cidade" for="idCidade"/>
+		<p:inputText id="idCidade" size="20" value="#{cadastroPedidoBean.pedido.enderecoEntrega.cidade}"
+					disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" />
+		
+		<p:outputLabel value="Estado" for="idEstado"/>
+		<p:inputText id="idEstado" size="20" value="#{cadastroPedidoBean.pedido.enderecoEntrega.uf}" 
+					disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" />
+		
+		<p:outputLabel value="CEP" for="idCep" />
+		<p:inputMask id="idCep" size="10" mask="99999-999" value="#{cadastroPedidoBean.pedido.enderecoEntrega.cep}" 
+					disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" />
+		
+	</p:panelGrid>
+
+</ui:composition>	

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bean:beans xmlns:bean="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+     http://www.springframework.org/schema/security
+     http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<http pattern="/login.xhtml" security="none" />
+	<http pattern="/erro.xhtml" security="none" />
+	<http pattern="/javax.faces.resource/**" security="none" />
+
+	<http auto-config="false" use-expressions="true">
+		<custom-filter ref="exceptionTranslationFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
+		
+		<intercept-url pattern="/home.xhtml" access="isAuthenticated()" />
+		<intercept-url pattern="/acessoNegado.xhtml" access="isAuthenticated()" />
+		<intercept-url pattern="/pedidos/**"
+			access="hasAnyRole('VENDEDORES','AUXILIARES','ADMINISTRADORES')" />
+		<intercept-url pattern="/produtos/**" access="hasAnyRole('ADMINISTRADORES')" />
+		<intercept-url pattern="/relatorios/**" access="hasAnyRole('VENDEDORES','AUXILIARES','ADMINISTRADORES')" />
+		<intercept-url pattern="/**" access="denyAll" />
+		
+		<form-login login-page="/login.xhtml" default-target-url="/"
+			always-use-default-target="true" authentication-failure-url="/login.xhtml?invalid=true" />
+		<logout logout-url="/j_spring_security_logout"
+			invalidate-session="true" />
+	</http>
+
+	<authentication-manager>
+		<authentication-provider user-service-ref="appUserDetailService" />
+		<!-- <user-service> <user name="joao" password="joao" authorities="VENDEDORES" 
+			/> <user name="yuri" password="yuri" authorities="ADMINISTRADORES" /> </user-service> -->
+	</authentication-manager>
+		
+	<bean:bean id="appUserDetailService" autowire="byType"
+		class="com.algaworks.pedidovenda.security.AppUserDetailService" />
+		
+	<bean:bean id="exceptionTranslationFilter" autowire="byType"
+		class="org.springframework.security.web.access.ExceptionTranslationFilter">
+		<bean:property name="accessDeniedHandler" ref="jsfAccessDeniedHandler" />
+		<bean:property name="authenticationEntryPoint" ref="authenticationEntryPoint" />
+	</bean:bean>
+
+	<bean:bean id="jsfAccessDeniedHandler" autowire="byType"
+		class="com.algaworks.pedidovenda.security.JsfAccessDeniedHandler">
+		<bean:property name="loginPath" value="/acessoNegado.xhtml" />
+		<bean:property name="contextRelative" value="true" />
+	</bean:bean>
+
+	<bean:bean id="authenticationEntryPoint" autowire="byType"
+		class="com.algaworks.pedidovenda.security.JsfLoginUrlAuthenticationEntryPoint">
+		<bean:property name="loginFormUrl" value="/login.xhtml" />
+		<bean:property name="redirectStrategy" ref="jsfRedirectStrategy" />
+	</bean:bean>
+
+	<bean:bean id="jsfRedirectStrategy" autowire="byType"
+		class="com.algaworks.pedidovenda.security.JsfRedirectStrategy" />
+	<bean:bean id="httpSessionSecurityContextRepository"
+		class="org.springframework.security.web.context.HttpSessionSecurityContextRepository" />
+
+</bean:beans>

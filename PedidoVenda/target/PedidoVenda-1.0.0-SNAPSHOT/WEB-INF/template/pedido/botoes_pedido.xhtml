@@ -1,0 +1,37 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:toolbar style="margin-top:20px">
+		<p:toolbarGroup align="left">
+			<p:button icon="ui-icon-circle-plus" title="Novo Pedido" 
+					  outcome="/pedidos/cadastroPedido.xhtml"/>
+			
+			<p:commandButton icon="ui-icon-circle-check" title="Salvar pedido" 
+							 action="#{cadastroPedidoBean.salvar}"  
+							 update="@form" disabled="#{cadastroPedidoBean.pedido.naoAlteravel}"/>
+		</p:toolbarGroup>
+
+		<p:toolbarGroup align="right">
+			<p:commandButton icon="ui-icon-clipboard" title="Emitir pedido" 
+							 action="#{emissaoPedidoBean.emitirPedido}" 
+							 process="@form" update="@form" 
+							 disabled="#{cadastroPedidoBean.pedido.naoEmissivel or not seguranca.emitirPedidoPermitido}"/>
+			
+			<p:commandButton icon="ui-icon-trash" title="Cancelar pedido" 
+							 action="#{cancelarPedidoBean.cancelarPedido}" 
+							 process="@this" update="@form" 
+							 disabled="#{cadastroPedidoBean.pedido.naoCancelavel or not seguranca.cancelarPedidoPermitido}"/>
+			
+			<p:commandButton icon="ui-icon-mail-closed" title="Enviar por E-mail"
+				action="#{envioEmailPedidoBean.enviarEmail}" process="@this" 
+				partialSubmit="true" disable="#{cadastroPedidoBean.pedido.naoEnviavelPorEmail}"/>
+			
+			<p:separator />
+			
+			<p:button icon="ui-icon-search" title="Pesquisar pedido" outcome="pesquisaPedido.xhtml"/>
+		</p:toolbarGroup>
+	</p:toolbar>
+
+</ui:composition>
